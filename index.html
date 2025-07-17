@@ -1,4 +1,4 @@
-# Volveremos a crear el archivo completo con todas las materias desde CBC hasta 5º año con el código funcional embebido
+MALLA INTERACTIVA DE LA CARRERA  DE FARMACIA EN LA UBA 
 
 html_path = Path("/mnt/data/malla_farmacia_completa.html")
 
@@ -101,7 +101,7 @@ html_complete = """<!DOCTYPE html>
   <div class="anios" id="malla"></div>
   <script>
     const materias = {
-      // CBC
+      // CBC - 
       "matematica": { nombre: "Matemática", anio: "CBC", cuatri: "1" },
       "quimica": { nombre: "Química", anio: "CBC", cuatri: "1" },
       "icse": { nombre: "ICSE", anio: "CBC", cuatri: "1" },
@@ -110,37 +110,38 @@ html_complete = """<!DOCTYPE html>
       "fisica-cbc": { nombre: "Física e Introducción", anio: "CBC", cuatri: "2" },
 
       // 1º Año
-      "mate1": { nombre: "Matemática", anio: "1", cuatri: "1", requiere: ["matematica"] },
-      "quimica1": { nombre: "Q. General e Inorgánica", anio: "1", cuatri: "1", requiere: ["quimica"] },
-      "icse1": { nombre: "ICSE 1° Año", anio: "1", cuatri: "1", requiere: ["icse"] },
+      "qg-inorganica": { nombre: "Química General e Inorgánica",  anio: "1", cuatri: "1", requiere: ["CBC"] },
+      "matematica-superior": { nombre: "Matemática Superior", anio: "1", cuatri: "1", requiere: ["CBC"] },
+       "anatomia": { nombre: "Anatomía e Histología",  anio: "1", cuatri: "1", requiere: ["CBC"] }, 
       "fisica": { nombre: "Física", anio: "1", cuatri: "2", requiere: ["mate1", "fisica-cbc"] },
-      "bio-cel-mol": { nombre: "Biología Cel. y Mol.", anio: "1", cuatri: "2", requiere: ["biocel"] },
-      "ipc1": { nombre: "IPC 1° Año", anio: "1", cuatri: "2", requiere: ["ipc"] },
-
-      // 2º Año
-      "qg-inorganica": { nombre: "Q. General e Inorgánica", anio: "2", cuatri: "1", requiere: ["quimica1"] },
-      "anatomia": { nombre: "Anatomía e Histología", anio: "2", cuatri: "1", requiere: ["bio-cel-mol"] },
-      "mate2": { nombre: "Matemática 2", anio: "2", cuatri: "1", requiere: ["mate1"] },
-      "qo1": { nombre: "Q. Orgánica I", anio: "2", cuatri: "2", requiere: ["qg-inorganica"] },
-      "fisicoquimica": { nombre: "Fisicoquímica", anio: "2", cuatri: "2", requiere: ["fisica"] },
-      "q-analitica": { nombre: "Q. Analítica", anio: "2", cuatri: "2", requiere: ["mate2"] },
+      "biologia-celular": { nombre: "Biología Celular y Molecular",  anio: "1", cuatri: "2", requiere: ["anatomia"] },
+      "qo1": { nombre: "Química Orgánica I ",  anio: "1", cuatri: "2", requiere: ["qg-inorganica"] },
+      
+      //2º Año 
+      "qo2": { nombre: "Química Orgánica II ",  anio: "2", cuatri: "1", requiere: ["qo1"] },
+      "fisio": { nombre: "Fisiología",   anio: "2", cuatri: "1",  requiere: ["biologia-celular"] },
+      "qa": { nombre: "Química Analítica ",  anio: "2", cuatri: "1", requiere: ["qg-inorganica", "qo1", "matematica-superior"] },
+      "fisicoquimica": { nombre: "Fisicoquímica ",   anio: "2", cuatri: "2",  requiere: ["fisica"] },
+      "qbiologica": { nombre: "Química Biológica ",  anio: "2", cuatri: "2",  requiere: ["biologia-celular", "qo2"] },
+      "qainstrumental": { nombre: "Q. Analítica Instrumental ",  anio: "2", cuatri: "2",  requiere: ["qa"] },
+     
 
       // 3º Año
-      "qo2": { nombre: "Q. Orgánica II", anio: "3", cuatri: "1", requiere: ["qo1"] },
-      "fisiologia": { nombre: "Fisiología", anio: "3", cuatri: "1", requiere: ["anatomia"] },
-      "qbiologica": { nombre: "Q. Biológica", anio: "3", cuatri: "2", requiere: ["qo2", "fisiologia"] },
-      "analitica-instrum": { nombre: "Q. Analítica Instrumental", anio: "3", cuatri: "2", requiere: ["q-analitica"] },
-      "salud-publica": { nombre: "Salud Pública", anio: "3", cuatri: "2", requiere: ["fisicoquimica"] },
-
+        "farmacognosia": { nombre: "Farmacognosia ", anio: "3", cuatri: "1", requiere: ["qbiologica"] },
+      "farmaco1": { nombre: "Farmacología I ", anio: "3", cuatri: "1", requiere: ["fisio"] },
+      "farmaco2": { nombre: "Farmacología II ", anio: "3", cuatri: "2", requiere: ["farmaco1"] },
+      "toxicologia": { nombre: "Toxicología ", anio: "3", cuatri: "2", requiere: ["qbiologica", "qa"] },
+      "nutricion": { nombre: "Nutrición ", anio: "3", cuatri: "2", requiere: ["fisio", "qbiologica"] },
+      
       // 4º Año
-      "fisiopatologia": { nombre: "Fisiopatología", anio: "4", cuatri: "1", requiere: ["fisiologia"] },
-      "microbiologia": { nombre: "Microbiología", anio: "4", cuatri: "1", requiere: ["qbiologica"] },
+ "microbiologia": { nombre: "Microbiología", anio: "4", cuatri: "1", requiere: ["qbiologica"] },
+      "fisiopatologia":  { nombre: "Fisiopatología", anio: "4", cuatri: "1", requiere: ["fisio"] },
       "farmacobotanica": { nombre: "Farmacobotánica", anio: "4", cuatri: "1", requiere: ["qo2"] },
       "inmunologia": { nombre: "Inmunología", anio: "4", cuatri: "1", requiere: ["fisiologia", "qbiologica"] },
       "farmacologia1": { nombre: "Farmacología I", anio: "4", cuatri: "2", requiere: ["fisiologia"] },
       "farmacognosia": { nombre: "Farmacognosia", anio: "4", cuatri: "2", requiere: ["qo2"] },
-      "nutricion": { nombre: "Nutrición", anio: "4", cuatri: "2", requiere: ["fisiologia", "qbiologica"] },
-      "salud-publica2": { nombre: "Salud Pública e Higiene Ambiental", anio: "4", cuatri: "2", requiere: ["analitica-instrum"] },
+      "nutricion": { nombre: "Nutrición", anio: "4", cuatri: "2", requiere: ["fisiologia", "qbiologica", "fisiopatologia"] },
+      "salud-publica2": { nombre: "Salud Pública e Higiene Ambiental", anio: "4", cuatri: "2", requiere: ["qanalitica-microbiologia"] },
 
       // 5º Año
       "farmacologia2": { nombre: "Farmacología II", anio: "5", cuatri: "1", requiere: ["farmacologia1"] },
@@ -148,9 +149,9 @@ html_complete = """<!DOCTYPE html>
       "tec-farm1": { nombre: "Tecnología Farmacéutica I", anio: "5", cuatri: "1", requiere: ["fisicoquimica"] },
       "farmacologia-clinica": { nombre: "Farmacología Clínica", anio: "5", cuatri: "1", requiere: ["farmacologia1", "inmunologia"] },
       "farmacia-clinica": { nombre: "Farmacia Clínica y Asistencial", anio: "5", cuatri: "1", requiere: ["farmacologia1", "fisiopatologia"] },
-      "calidad": { nombre: "Calidad de Medicamentos", anio: "5", cuatri: "2", requiere: ["analitica-instrum"] },
-      "bromatologia": { nombre: "Bromatología", anio: "5", cuatri: "2", requiere: ["nutricion", "microbiologia"] },
-      "tec-farm2": { nombre: "Tecnología Farmacéutica II", anio: "5", cuatri: "2", requiere: ["tec-farm1"] },
+      "tecfarma2": { nombre: "Tec. Farmacéutica II ",  anio: "5", cuatri: "2", requiere: ["tecfarma1"] },
+      "calidad": { nombre: "Calidad de Medicamentos ", anio: "5", cuatri: "2", requiere: ["qainstrumental", "tecfarma1"] },
+      "bromatologia": { nombre: "Bromatología",  anio: "5", cuatri: "2", requiere: ["microbiologia", "nutricion"] },
       "q-medicinal": { nombre: "Química Medicinal", anio: "5", cuatri: "2", requiere: ["farmacognosia", "farmacologia2"] }
     };
 
